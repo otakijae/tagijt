@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.otakijae.tagit.repository.ContentRepository">
+
+    <select id="getContentList" resultType="com.otakijae.tagit.model.vo.ContentVo">
+        SELECT *
+        FROM content
+    </select>
+
+    <select id="getContentById" resultType="com.otakijae.tagit.model.vo.ContentVo">
+        SELECT *
+        FROM content
+        WHERE content_id = #{contentId}
+    </select>
+
+    <insert id="insertContent" parameterType="com.otakijae.tagit.model.vo.ContentVo">
+        INSERT INTO content
+            (title, description)
+        VALUES
+            (#{title}, #{description})
+    </insert>
+
+    <update id="updateContent" parameterType="com.otakijae.tagit.model.vo.ContentVo">
+        UPDATE content
+        SET title = #{title},
+            description = #{description},
+            update_ymdt = #{updateYmdt}
+        WHERE content_id = #{contentId}
+    </update>
+
+    <delete id="deleteContent">
+        DELETE
+        FROM content
+        WHERE content_id = #{contentId}
+    </delete>
+
+</mapper>
